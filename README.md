@@ -1,1 +1,0 @@
-# bootcamp-homework-10-template-generator
