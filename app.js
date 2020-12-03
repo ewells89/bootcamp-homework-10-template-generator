@@ -68,24 +68,27 @@ const addNewEmployee= () => {
         // Role-specific questions to push the correct object values to the employees variable above.
         if(data.role === "Intern"){
             inquirer.prompt(newIntern)
-            .then(
-                employees.push(new Intern(data.name,data.id,data.email,data.school))
-            )
+            .then(answer => {
+                employees.push(new Intern(data.name,data.id,data.email,answer.school))
+                }
+            ).then(writeToHTML)
             .catch(err => 
                 console.log(err)
             );
         }else if(data.role ==="Engineer"){
             inquirer.prompt(newEngineer)
-            .then(
-                employees.push(new Engineer(data.name,data.id,data.email,data.github))
-            )
+            .then(answer => {
+                employees.push(new Engineer(data.name,data.id,data.email,answer.github))
+                }    
+            ).then(writeToHTML)
             .catch(err => 
                 console.log(err)
             );
         }else if(data.role === "Manager"){
             inquirer.prompt(newManager)
-            .then(
-                employees.push(new Manager(data.name,data.id,data.email,data.officeNumber))
+            .then(answer => {
+                employees.push(new Manager(data.name,data.id,data.email,answer.officeNumber))
+                }
             ).then(writeToHTML)
             .catch(err =>
                 console.log(err)
@@ -99,9 +102,10 @@ const addNewEmployee= () => {
 };
 
 
-const writeToHTML = (data) => {
-    fs.writeFile(outputPath,render(employees), (err) =>
-    err ? console.error(err) : console.log('Employee added!'))
+const writeToHTML = () => {
+    fs.appendFile(outputPath,render(employees), (err) =>
+    err ? console.error(err) : console.log('Employee added!'));
+    console.log(employees);
 }
 
 
