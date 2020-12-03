@@ -15,13 +15,70 @@ const render = require("./lib/htmlRenderer");
 // and to create objects for each team member (using the correct classes as blueprints!)
 const newEmployee = [
     {
+        type: 'input',
+        name: 'name',
+        message: 'Employee Name:'
+    },
+    {
+        type: 'input',
+        name: 'id',
+        message: 'Employee ID:'
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: 'Employee Email:'
+    },
+    {
         type: 'list',
         name: 'role',
         message: 'Please select the role for the new team member.',
         choices: ['Intern','Employee','Manager','Engineer']
     }
-]
+];
 
+const newManager = [
+    {
+        type: 'input',
+        name: 'officeNumber',
+        message: 'Manager Office Number:'
+    }
+];
+
+const newEngineer = [
+    {
+        type: 'input',
+        name: 'github',
+        message: 'GitHub Profile Name:'
+    }
+];
+
+const newIntern = [
+    {
+        type: 'input',
+        name: 'school',
+        message: 'School the intern is attending:'
+    }
+];
+
+
+function addNewEmployee() {
+    inquirer.prompt(newEmployee)
+    .then(data => {
+        if(data.role === "Intern"){
+            inquirer.prompt(newIntern)
+            // .then(createIntern());
+        }
+    });
+    
+};
+
+
+const createIntern = ()=> {
+
+};
+
+addNewEmployee();
 
 
 
