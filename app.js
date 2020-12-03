@@ -33,7 +33,7 @@ const newEmployee = [
         type: 'list',
         name: 'role',
         message: 'Please select the role for the new team member.',
-        choices: ['Intern','Employee','Manager','Engineer']
+        choices: ['Intern','Manager','Engineer']
     }
 ];
 
@@ -67,7 +67,24 @@ function addNewEmployee() {
     .then(data => {
         if(data.role === "Intern"){
             inquirer.prompt(newIntern)
-            // .then(createIntern());
+            .then(createIntern())
+            .catch(err => 
+                console.log(err)
+            );
+        }else if(data.role ==="Engineer"){
+            inquirer.prompt(newEngineer)
+            .then(createEngineer())
+            .catch(err => 
+                console.log(err)
+            );
+        }else if(data.role === "Manager"){
+            inquirer.prompt(newManager)
+            .then(createManager())
+            .catch(err =>
+                console.log(err)
+            );
+        }else{
+
         }
     });
     
